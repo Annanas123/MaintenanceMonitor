@@ -40,12 +40,14 @@ public class MaintenanceController {
 
     @GetMapping("/api/message/reset")
     public String resetStatus(Model model) throws IOException {
+        String m = messageText(true);
         writeStatusToFile("true");
+        writeMsgTextToFile(m);
         writeLastUpdatedToFile();
         return displayStatus(model);
     }
 
-    private boolean readStatusFromFile() throws FileNotFoundException {
+    boolean readStatusFromFile() throws FileNotFoundException {
         File file = ResourceUtils.getFile("classpath:status.txt");
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             StringBuilder sb = new StringBuilder();
@@ -80,7 +82,7 @@ public class MaintenanceController {
             return readMsgTextFromFile();
     }
 
-    private String readMsgTextFromFile() throws FileNotFoundException {
+    String readMsgTextFromFile() throws FileNotFoundException {
         File file = ResourceUtils.getFile("classpath:message.txt");
         String sb = getStringFromFile(file);
         if (sb != null) return sb;
@@ -97,7 +99,7 @@ public class MaintenanceController {
         }
     }
 
-    private String lastUpdated() throws FileNotFoundException {
+    String lastUpdated() throws FileNotFoundException {
         File file = ResourceUtils.getFile("classpath:updateTime.txt");
         String sb = getStringFromFile(file);
         if (sb != null) return sb;
