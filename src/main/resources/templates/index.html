@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Maintenance Monitor</title>
+    <style>
+        .align {
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body th:style="'background-color:' + ${color}">
+
+<div class="align">
+    <h1 style="font-size:5vh">Maintenance Monitor</h1>
+    <p th:text="${messageText}" style="font-size:2.5vh"></p>
+    <p th:text="${update}" style="font-size:1.5vh"> </p>
+</div>
+
+</body>
+</html>
